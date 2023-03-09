@@ -1,21 +1,20 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-class User extends React.Component{
-  constructor(props) {
-    super(props);
-  }
+const User = () => {
+  const navigate = useNavigate();
 
-  componentDidMount() {
-    console.log(this.props);
-  }
+  const handleClick = () => {
+    // na(-2);
+    navigate('/profile/1111/3333/info', { replace: false, state: { name: 'zhangsan' } });
+  };
 
-  render() {
-    return (
-      <h1>
-        User
-      </h1>
-    );
-  }
-}
+  return (
+    <div>
+      <button onClick={handleClick}>点我</button>
+      User
+    </div>
+  );
+};
 
 export default User;

@@ -100,8 +100,9 @@ export function matchPath(path, pathname) {
 export function useNavigate() {
   let { navigator } = React.useContext(NavigationContext);
   let navigate = React.useCallback((to) => {
-    navigator.push(to);
+    typeof to === 'number' ? navigator.go(to) : navigator.push(to);
   }, [navigator]);
   return navigate;
 }
+
 

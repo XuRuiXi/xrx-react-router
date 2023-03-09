@@ -1,9 +1,16 @@
 import React from 'react';
-function Home(props){
-  const { title } = props;
-  return(
-    <h1>{title}</h1>
-  );
+
+
+class Home extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return(
+      <h1>{this.props.title}</h1>
+    );
+  }
 }
+
 
 export default Home;

@@ -1,15 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Routes, Route, Link, NavLink, Navigate } from './react-router-dom';
+import { BrowserRouter, Routes, Route, Link, NavLink, Navigate, useRoutes } from 'react-router-dom';
 
 import Home from './components/Home';
 import User from './components/User';
 import Profile from './components/Profile';
 import Login from './components/Login';
-import Protected from './components/Protected';
+import Info from './components/Info';
 
 const activeStyle = { backgroundColor: "red" };
 const activeClassName = 'active';
+const Pages = () => {
+  return useRoutes([
+    {
+      path: '/',
+      element: <Home title="首页" />,
+    },
+    {
+      path: '/user',
+      element: <User />,
+    },
+    {
+      path: '/profile/:id/:name',
+      element: <Profile />,
+      children: [
+        {
+          path: '/profile/:id/:name/info',
+          element: <Info />,
+        },
+      ]
+    },
+    {
+      path: '/user/login',
+      element: <Login />,
+    },
+    {
+      path: '*',
+      element: <Navigate to="/" />
+    }
+  ]);
+};
+
+
 
 ReactDOM.render(
   <div>
@@ -24,18 +56,14 @@ ReactDOM.render(
           </NavLink>
         </li>
         <li><Link to="/user" >用户管理</Link></li>
-        <li><Link to="/profile" >个人中心</Link></li>
+        <li><Link to="/profile/1111/3333" >个人中心</Link></li>
       </ul>
-      <Routes>
-        <Route path='/' element={<Home title="Home"></Home>}></Route>
-        <Route path='/user' element={<User></User>}></Route>
-        <Route path="/profile" element={<Protected component={Profile} />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+      <Pages />
     </BrowserRouter>
   </div>
   
   ,
   document.getElementById('app')
 );
+
+// 写个

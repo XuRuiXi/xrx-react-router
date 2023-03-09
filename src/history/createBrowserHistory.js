@@ -47,7 +47,6 @@ function createBrowserHistory(){
   function notify(newState){
     //把newState上的属性赋值到history对象上
     Object.assign(history, newState);
-    console.log(history);
     history.length = globalHistory.length;//路由历史栈中历史条目的长度
     listeners.forEach(listener => listener({ location: history.location }));
   }
@@ -60,6 +59,8 @@ function createBrowserHistory(){
     }else{
       state = nextState; 
     }
+    console.log('pathname',pathname);
+    console.log('state',state);
     globalHistory.pushState(state, null, pathname); // 我们已经 跳转路径
     let location = {
       state,

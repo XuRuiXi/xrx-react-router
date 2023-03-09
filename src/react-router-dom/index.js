@@ -22,7 +22,6 @@ function BrowserRouter({ children }) {
     action: history.action, //方法  pop push
     location: history.location //当前路径
   });
-  console.log(state);
   //监听
   React.useLayoutEffect(() => history.listen(setState), [history]);
 
